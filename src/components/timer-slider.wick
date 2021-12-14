@@ -1,0 +1,3 @@
+import slider from "./inputs/slider.wick";
+
+export default <slider></slider>;

@@ -1,0 +1,178 @@
+import router from "@radiate";
+import glow from "@candlelib/glow";
+import {fontID, colorID, promo_dur, short_dur, long_dur} from "@store"
+
+import menu from "./components/menu";
+import rad from "./components/inputs/radio_button";
+import minute from "./components/inputs/minute";
+import close from "./components/inputs/close";
+
+let val = 0;
+
+let ifontID = fontID;
+let icolorID = colorID;
+let ipromo_dur = promo_dur;
+let ishort_dur = short_dur;
+let ilong_dur = long_dur;
+
+function ontrsin(a,b,c,trs){
+    ifontID = fontID;
+    icolorID = colorID;
+    ipromo_dur =promo_dur;
+    ishort_dur =short_dur;
+    ilong_dur =long_dur;
+    console.log(trs)
+    trs({
+        obj:"@root",
+        opacity:[{tic:0,val:0}, {tic:50,val:0}, {tic:300, val:1}]
+    },{
+        obj:"@menu",
+        transform:[{tic:0,val:"translateY(1000)"}, {tic:250,val:"translateY(600)"}, {tic:600, val:"translateY(0)", eas:glow.easing.ease_out}],
+    })
+}
+
+function ontrsout(a,b,c,trs){
+    trs({
+        obj:"@root",
+        opacity:[{tic:0,val:1}, {tic:200,val:1}, {tic:600, val:0}]
+    },{
+        obj:"@menu",
+        transform:[{tic:0,val:"translateY(0)", eas:glow.easing.ease_in}, {tic:100,val:"translateY(0)", eas:glow.easing.ease_in}, {tic:300,val:"translateY(1000)"}],
+    })
+}
+
+function apply(){
+    fontID =  ifontID;
+    colorID =  icolorID;
+    promo_dur = ipromo_dur;
+    short_dur = ishort_dur;
+    long_dur = ilong_dur;
+    router.closeModal() 
+}
+
+export default <app id=app class="modal">
+    <menu>
+        <h1>Settings</h1>
+        <close class=close onclick={ router.closeModal() }/>
+        
+        <div class="divider full"></div>
+        <div class="row top">
+        <h3>TIME (MINUTES)</h3>
+        <div class=flex-row>
+        <minute val={ ipromo_dur; 1 } label=promodor/>
+        <minute val={ ishort_dur; 1 } label="short break"/>
+        <minute val={ ilong_dur; 1 } label="long break"/>
+        </row>
+        </div>
+        <div class=divider></div>
+        <div class=row>
+            <h3> Font </h3>
+            <div class=inline-row-right>
+            <rad class="font fontA" class={ifontID == 0; "selected"} onclick={(ifontID = 0)}><div>Aa</div></rad>
+            <rad class="font fontB" class={ifontID == 1; "selected"} onclick={(ifontID = 1)}><div>Aa</div></rad>
+            <rad class="font fontC" class={ifontID == 2; "selected"} onclick={(ifontID = 2)}><div>Aa</div></rad>
+            </div>
+        </div>
+        <div class=divider></div>
+        <div class=row>
+            <h3> Color </h3>
+            <div class=inline-row-right>
+            <rad class="color colorA" class={icolorID == 0; "selected"} onclick={(icolorID = 0)}/>
+            <rad class="color colorB" class={icolorID == 1; "selected"} onclick={(icolorID = 1)}/>
+            <rad class="color colorC" class={icolorID == 2; "selected"} onclick={(icolorID = 2)}/>
+            </div>
+        </div>
+        <div class=button-bar>
+            <button class=color col={icolorID + 1} onclick=apply>Apply</button>
+        </div>
+    </menu>
+
+
+</app>;
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500;700&family=Roboto+Slab:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+    .close{
+        top:25px;
+        right:20px;
+        position:absolute;
+    }
+
+    .radiate-init root{
+        opacity:0
+    }
+
+    root {
+        -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+        position:absolute;
+        font-size:12px;
+        width:100%;
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+        padding: 60px;
+        font-family:"Kumbh Sans", arial, sans-serif;
+        background: rgba(0,0,0,0.5);
+    }
+    .color, .font-color {transition: color 100ms, background-color 100ms;}
+    .color[col="1"] { background-color: #F87070; }
+    .color[col="2"] { background-color: #70F3F8; }
+    .color[col="3"] { background-color: #D881F8; }
+    .font-color[col="1"]:hover { color: #F87070; }
+    .font-color[col="2"]:hover { color: #70F3F8; }
+    .font-color[col="3"]:hover { color: #D881F8; }
+    .fontA { font-family: "Kumbh Sans"; }
+    .fontB { font-family: "Roboto Slab"; }
+    .fontC { font-family: "Space Mono"; }
+    .colorA { background-color: #F87070; }
+    .colorB { background-color: #70F3F8; }
+    .colorC { background-color: #D881F8; }
+
+    .logo {
+        margin-top:60px;
+    }
+
+    .slider {
+        margin-top:100px;
+    }
+
+    .button-bar {
+        width:100%;
+        position:absolute;
+        bottom:0;
+        left:0;
+        text-align:center;
+    }
+
+    button {
+        font-weight:bold;
+        position:relative;
+        left:0;
+        font-size:16px;
+        top:24px;
+        height:53px;
+        border-radius:25px;
+        padding:10px 50px;
+        border:none;
+        color:white;
+        cursor:pointer;
+    }
+
+    button:hover {
+        background:#F98D8D
+    }
+
+    @media screen and ( max-width:700px){
+        root { padding: 20px; }
+            .close{
+            top:10px;
+            right:10px;
+        }
+    }
+
+</style>

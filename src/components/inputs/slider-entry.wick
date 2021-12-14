@@ -1,0 +1,2 @@
+import {val, label, event, active} from "@attributes";
+export default <div class=entry onclick={ event = val } >{label}  </div>;

@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="@candlelib/wick-0.16.1"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <style id="wick-boiler-plate">
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+        position:absolute; 
+        top:0;
+        left:0; 
+        width:100%;
+        padding:0;
+        margin:0; border:none;
+    }
+    
+    li { list-style:none }
+    
+    a { text-decoration:none }
+    
+    </style>
+
+    <style id="wick-app-style">
+    
+                @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500;700&family=Roboto+Slab:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap") ;
+                
+                .WwUfglkcTZ4uCkqs{
+                    -webkit-tap-highlight-color:rgba(255, 255, 255, 0);
+                    font-size:12px;
+                    user-select:none;
+                    position:absolute;
+                    width:100%;
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    overflow:hidden;
+                    font-family:"Kumbh Sans" , arial , sans-serif;
+                    top:0;
+                    bottom:0
+                }
+                
+                .WwUfglkcTZ4uCkqs main{
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    position:relative;
+                    text-align:center
+                }
+                
+                .WwUfglkcTZ4uCkqs .color,
+                .WwUfglkcTZ4uCkqs .font-color{
+                    transition:color 300ms , background-color
+                }
+                
+                .WwUfglkcTZ4uCkqs .color[col="1"]{
+                    background-color:#f87070;
+                    stroke:#F87070
+                }
+                
+                .WwUfglkcTZ4uCkqs .color[col="2"]{
+                    background-color:#70f3f8;
+                    stroke:#70F3F8
+                }
+                
+                .WwUfglkcTZ4uCkqs .color[col="3"]{
+                    background-color:#d881f8;
+                    stroke:#D881F8
+                }
+                
+                .WwUfglkcTZ4uCkqs.fontA,
+                .WwUfglkcTZ4uCkqs .fontA{
+                    font-family:"Kumbh Sans"
+                }
+                
+                .WwUfglkcTZ4uCkqs.fontB,
+                .WwUfglkcTZ4uCkqs .fontB{
+                    font-family:"Roboto Slab"
+                }
+                
+                .WwUfglkcTZ4uCkqs.fontC,
+                .WwUfglkcTZ4uCkqs .fontC{
+                    font-family:"Space Mono"
+                }
+                
+                .WwUfglkcTZ4uCkqs button{
+                    background:none;
+                    border:none;
+                    width:28px;
+                    height:28px;
+                    cursor:pointer;
+                    opacity:0.5
+                }
+                
+                .WwUfglkcTZ4uCkqs button:hover{
+                    opacity:1
+                }
+                
+                .WwUfglkcTZ4uCkqs .timer{
+                    z-index:0
+                }
+                
+                .WwUfglkcTZ4uCkqs .logo{
+                    z-index:1
+                }
+                
+                .WwUfglkcTZ4uCkqs .slider{
+                    z-index:1;
+                    margin-top:60px
+                }
+                
+                @media screen and (max-height:670px){
+                    .WwUfglkcTZ4uCkqs .slider{
+                        margin-top:10px
+                    }
+                }
+                
+                @media screen and (max-width:600px){
+                    .WwUfglkcTZ4uCkqs main{
+                        width:100%
+                    }
+                }
+                body{
+                    background-color:#1e213f
+                }
+                
+                .WkjDhBDw6vkC5wVZ,
+                .WkjDhBDw6vkC5wVZ .clock-bezel{
+                    display:flex;
+                    align-items:center;
+                    justify-content:center
+                }
+                
+                .WkjDhBDw6vkC5wVZ{
+                    position:relative;
+                    width:500px;
+                    height:500px;
+                    font-size:12px;
+                    background:radial-gradient(circle at 43% 43%, #424BA1A0 00%,#00000000 50%,#00000000 70%) , radial-gradient(circle at 55% 55%, #000000a0 00%,#00000000 53%,#00000000 70%)
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-bezel{
+                    position:relative;
+                    top:0;
+                    width:82%;
+                    height:82%;
+                    border-radius:100%;
+                    background:radial-gradient(circle at 15% 15%,#161932 50%, #424BA120 80%);
+                    background-color:#1e213f
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-face{
+                    position:relative;
+                    top:0;
+                    width:90%;
+                    height:90%;
+                    border-radius:100%;
+                    background-color:#161932;
+                    cursor:pointer
+                }
+                
+                .WkjDhBDw6vkC5wVZ .radiate-init .clock-face{
+                    opacity:0
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-text{
+                    width:100%;
+                    height:100%;
+                    text-align:center;
+                    color:#d7e0ff;
+                    font-weight:bold;
+                    position:relative;
+                    top:0
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-time-text{
+                    display:flex;
+                    justify-content:center;
+                    position:relative;
+                    line-height:50px;
+                    top:40%;
+                    font-size:7.9em;
+                    letter-spacing:-0.02em;
+                    opacity:0
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-time-subtext{
+                    text-transform:uppercase;
+                    position:absolute;
+                    font-size:1.33em;
+                    width:100%;
+                    bottom:18%;
+                    letter-spacing:0.9em
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-face:hover .font-color[col="1"]{
+                    color:#f87070
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-face:hover .font-color[col="2"]{
+                    color:#70f3f8
+                }
+                
+                .WkjDhBDw6vkC5wVZ .clock-face:hover .font-color[col="3"]{
+                    color:#d881f8
+                }
+                
+                .WkjDhBDw6vkC5wVZ .outline{
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    padding:10px;
+                    transform:matrix(0,-1,1,0,0,0)
+                }
+                
+                .WkjDhBDw6vkC5wVZ .min,
+                .WkjDhBDw6vkC5wVZ .sec,
+                .WkjDhBDw6vkC5wVZ .center{
+                    text-overflow:;
+                    display:block;
+                    width:46%
+                }
+                
+                .WkjDhBDw6vkC5wVZ .min{
+                    text-align:right
+                }
+                
+                .WkjDhBDw6vkC5wVZ .sec{
+                    text-align:left
+                }
+                
+                .WkjDhBDw6vkC5wVZ .center{
+                    text-align:center;
+                    width:8%;
+                    font-kerning:none;
+                    justify-content:center;
+                    display:flex
+                }
+                
+                @media screen and (max-width:700px){
+                    .WkjDhBDw6vkC5wVZ{
+                        height:450px;
+                        width:450px;
+                        font-size:0.9em
+                    }
+                }
+                
+                @media screen and (max-height:670px){
+                    .WkjDhBDw6vkC5wVZ{
+                        height:70vh;
+                        width:70vh;
+                        font-size:1.5vh
+                    }
+                }
+                .WwhP3z8i94jzkcKy{
+                    position:relative;
+                    height:64px;
+                    background-color:#161932;
+                    border-radius:30px;
+                    padding:7px;
+                    width:fit-content;
+                    z-index:0;
+                    font-size:12px
+                }
+                
+                .WwhP3z8i94jzkcKy .entry{
+                    cursor:pointer;
+                    display:inline-block;
+                    height:50px;
+                    line-height:50px;
+                    margin:0 5px;
+                    padding:0 20px;
+                    text-align:center;
+                    font-size:1.2em;
+                    font-weight:bold;
+                    color:#636984;
+                    z-index:1;
+                    position:relative;
+                    transition:color 300ms
+                }
+                
+                .WwhP3z8i94jzkcKy .entry:hover{
+                    color:#ffffff
+                }
+                
+                .WwhP3z8i94jzkcKy .entry.active{
+                    color:#1e213f;
+                    cursor:unset;
+                    opacity:1
+                }
+                
+                .WwhP3z8i94jzkcKy .backer{
+                    position:absolute;
+                    height:50px;
+                    z-index:0;
+                    border-radius:25px;
+                    top:7px;
+                    left:7px;
+                    right:7px;
+                    padding:0 10px;
+                    color:rgba(0,0,0,0);
+                    transition:left 400ms , right 200ms
+                }
+                
+                @media screen and (max-width:750px){
+                    .WwhP3z8i94jzkcKy{
+                        font-size:2.4vw
+                    }
+                }
+                
+                @media screen and (max-height:670px){
+                    .WwhP3z8i94jzkcKy{
+                        height:30px;
+                        padding:0 0px
+                    }
+                    .WwhP3z8i94jzkcKy .entry{
+                        line-height:30px;
+                        height:30px;
+                        margin:0
+                    }
+                    .WwhP3z8i94jzkcKy .backer{
+                        height:30px;
+                        margin:0;
+                        padding:0 2px;
+                        top:0
+                    }
+                }
+    </style>
+
+    <style id="radiate">
+        .radiate-page {
+            position:absolute;
+            top:0;
+            left:0;
+        }
+
+        .radiate-hide {
+            opacity:0;
+        }
+
+        radiate-modals {
+            position:fixed;
+            width:100%;
+            top:0;
+            left:0;
+            z-index:100000;
+        }
+
+        radiate-modals iframe{
+            border: none;
+            width:100vh;
+            height:100vh;
+        }
+    </style>
+  </head>
+  <body>
+    <script> document.body.classList.toggle("radiate-init"); </script>
+
+    <app id="app" class="WwUfglkcTZ4uCkqs wk-c-0">
+      <main class="wk-claim-0">
+        <div class="logo wk-claim-0">
+          <img src="./img/logo.svg" class="wk-claim-0"/>
+        </div>
+        <div class="WwhP3z8i94jzkcKy WippgG8kMmmE5wmi slider wk-c-1 wk-claim-0">
+          <div class="backer color wk-claim-1">pomodoro
+          </div>
+          <div class="entry entry Wi68AKBiruSl8kzh wk-c-3 wk-claim-1"><w-b class="wk-claim-3">pomodoro</w-b>
+          </div>
+          <div class="entry entry Wi68AKBiruSl8kzh wk-c-3 wk-claim-1"><w-b class="wk-claim-3">short break</w-b>
+          </div>
+          <div class="entry entry Wi68AKBiruSl8kzh wk-c-3 wk-claim-1"><w-b class="wk-claim-3">long break</w-b>
+          </div>
+        </div>
+        <div class="WkjDhBDw6vkC5wVZ timer wk-c-1 wk-claim-0">
+          <div class="clock-bezel wk-claim-1">
+            <div class="clock-face wk-claim-1">
+              <div class="clock-text wk-claim-1">
+                <div class="clock-time-text wk-claim-1">
+                  <span class="min wk-claim-1"><w-b class="wk-claim-1">00</w-b>
+                  </span>
+                  <span class="center wk-claim-1">:
+                  </span>
+                  <span class="sec wk-claim-1"><w-b class="wk-claim-1">00</w-b>
+                  </span>
+                </div>
+                <div class="clock-time-subtext font-color wk-claim-1"><w-b class="wk-claim-1">start</w-b>
+                </div>
+                <svg class="outline wk-claim-1" viewBox="0 0 100 100">
+                  <circle stroke-dasharray="298.45130209103036" stroke-dashoffset="298.45130209103036" r="47.5" class="color wk-claim-1" style="fill: none; stroke-width: 3.5;" stroke-linecap="round" cx="50" cy="50">
+                  </circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="settings wk-claim-0">
+          <img src="./img/icon-settings.svg" class="wk-claim-0"/>
+        </button>
+      </main>
+    </app>
+
+    <script type=module id="wick-init-script">
+      
+				import {radiate} from "./src/pack.js";
+				radiate.default();
+    </script>
+    <script type=module id="wick-component-script">
+      
+    const w = wick;
+
+    w.appendPresets({"repo":[["MccdVAicX","./src/pack.js"]]});
+
+    
+      w.rt.rC(class WwUfglkcTZ4uCkqs extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(
+      
+                  6,
+      
+                  "click",
+      
+                  _=>this.context.api.router.setLocation("/menu")
+              );
+      
+              this.sa(4, "class", "slider");
+      
+              this.sa(5, "class", "timer");
+      
+              wick.rt.set_store("persist", "fontID", 1, this);
+      
+              wick.rt.set_store("persist", "colorID", 1, this);
+      
+              wick.rt.set_store("persist", "promo_dur", 5, this);
+      
+              wick.rt.set_store("persist", "short_dur", 15, this);
+      
+              wick.rt.set_store("persist", "long_dur", 20, this);
+      
+              w.rt.register_store("persist", "fontID", this);
+      
+              w.rt.register_store("persist", "colorID", this);
+      
+              w.rt.register_store("persist", "promo_dur", this);
+      
+              w.rt.register_store("persist", "short_dur", this);
+      
+              w.rt.register_store("persist", "long_dur", this);
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2,c.u3,c.u4,c.u5];
+      
+              c.attr = new Map(
+      
+                  [["fontID",{ val:undefined, meta:1614807040, module:"persist" }],["router",{ val:undefined, meta:4194305, module:"" }],["colorID",{ val:undefined, meta:1614807042, module:"persist" }],["promo_dur",{ val:undefined, meta:1614807043, module:"persist" }],["short_dur",{ val:undefined, meta:1614807044, module:"persist" }],["long_dur",{ val:undefined, meta:1614807045, module:"persist" }]]
+              );
+          }
+      
+          denit(  ){
+      
+              w.rt.unregister_store("persist", "fontID", this);
+      
+              w.rt.unregister_store("persist", "colorID", this);
+      
+              w.rt.unregister_store("persist", "promo_dur", this);
+      
+              w.rt.unregister_store("persist", "short_dur", this);
+      
+              w.rt.unregister_store("persist", "long_dur", this);
+          }
+      
+          u0( f, c ){
+      
+              this.set_class(0, this.get_attr("fontID")==0, "fontA");
+      
+              this.set_class(0, this.get_attr("fontID")==1, "fontB");
+      
+              this.set_class(0, this.get_attr("fontID")==2, "fontC");
+          }
+      });
+      w.rt.rC(class WkjDhBDw6vkC5wVZ extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(2, "click", ( ...a )=>this.set_state(...a));
+      
+              this.set_attr("min", "00");
+      
+              this.set_attr("sec", "00");
+      
+              this.set_attr("text", "start");
+      
+              this.set_attr("t", 1);
+      
+              this.set_attr("path_size", 2*47.5*Math.PI);
+      
+              this.set_attr("dur", 20);
+      
+              this.set_attr("dur_chase", 20);
+      
+              this.set_attr("init_val", 0);
+      
+              this.set_attr("chase_val", 0);
+      
+              this.set_attr("PAUSED", true);
+      
+              wick.rt.set_store("", "active_time", 1, this);
+      
+              w.rt.register_store("", "fontID", this);
+      
+              w.rt.register_store("", "promo_dur", this);
+      
+              w.rt.register_store("", "short_dur", this);
+      
+              w.rt.register_store("", "long_dur", this);
+      
+              w.rt.register_store("", "active_time", this);
+      
+              w.rt.register_store("", "colorID", this);
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2,c.u3,c.u4,c.u5,c.u6,c.u7,c.u8,c.u9,c.u10,c.u11,c.u12,c.u13,c.u14,c.u15,c.u16___,c.u17,c.u18___,this.b19,this.b20];
+      
+              c.attr = new Map(
+      
+                  [["active_time",{ val:undefined, meta:1614807040, module:"" }],["long_dur",{ val:undefined, meta:1614807041, module:"" }],["promo_dur",{ val:undefined, meta:1614807042, module:"" }],["short_dur",{ val:undefined, meta:1614807043, module:"" }],["min",{ val:undefined, meta:541065220, module:"" }],["sec",{ val:undefined, meta:541065221, module:"" }],["colorID",{ val:undefined, meta:1614807046, module:"" }],["text",{ val:undefined, meta:541065223, module:"" }],["path_size",{ val:undefined, meta:541065224, module:"" }],["t",{ val:undefined, meta:541065225, module:"" }],["r",{ val:undefined, meta:541065226, module:"" }],["dur",{ val:undefined, meta:541065227, module:"" }],["dur_chase",{ val:undefined, meta:541065228, module:"" }],["init_val",{ val:undefined, meta:541065229, module:"" }],["chase_val",{ val:undefined, meta:541065230, module:"" }],["PAUSED",{ val:undefined, meta:541065231, module:"" }],["set_time_text",{ val:undefined, meta:541065232, module:"" }],["glow",{ val:undefined, meta:4194321, module:"MccdVAicX" }],["set_time",{ val:undefined, meta:541065234, module:"" }]]
+              );
+          }
+      
+          denit(  ){
+      
+              w.rt.unregister_store("", "fontID", this);
+      
+              w.rt.unregister_store("", "promo_dur", this);
+      
+              w.rt.unregister_store("", "short_dur", this);
+      
+              w.rt.unregister_store("", "long_dur", this);
+      
+              w.rt.unregister_store("", "active_time", this);
+      
+              w.rt.unregister_store("", "colorID", this);
+          }
+      
+          b19( f, c ){
+      
+              this._2_(
+      
+                  c,
+      
+                  this.get_attr("active_time"),
+      
+                  this.get_attr("short_dur"),
+      
+                  this.get_attr("long_dur"),
+      
+                  this.get_attr("promo_dur")
+              );
+          }
+      
+          b20( f, c ){
+      
+              if ( !this.check("t") ) return 0;
+      
+              this.sa(
+      
+                  13,
+      
+                  "stroke-dashoffset",
+      
+                  this.get_attr("path_size")*this.get_attr("t")
+              );
+          }
+      
+          u0( f, c ){this.call(19, c);}
+      
+          u1( f, c ){this.call(19, c);}
+      
+          u2( f, c ){this.call(19, c);}
+      
+          u3( f, c ){this.call(19, c);}
+      
+          u4( f, c ){this.ue(6, this.get_attr("min"));}
+      
+          u5( f, c ){this.ue(9, this.get_attr("sec"));}
+      
+          u6( f, c ){
+      
+              this.sa(10, "col", this.get_attr("colorID")+1);
+      
+              this.sa(13, "col", this.get_attr("colorID")+1);
+          }
+      
+          u7( f, c ){this.ue(11, this.get_attr("text"));}
+      
+          u8( f, c ){
+      
+              this.sa(13, "stroke-dasharray", this.get_attr("path_size"));
+      
+              this.call(20, c);
+          }
+      
+          u9( f, c ){this.call(20, c);}
+      
+          u10( f, c ){this.sa(13, "r", 47.5);}
+      
+          _2_( c, active_time, short_dur, long_dur, promo_dur ){
+      
+              if ( active_time==1 ) {this.set_attr("init_val", (promo_dur*60000));}else if ( active_time==2 ) {this.set_attr("init_val", (short_dur*60000));}else {this.set_attr("init_val", (long_dur*60000));}
+      
+              this.set_attr("dur", this.get_attr("init_val"));
+      
+              this.set_attr("PAUSED", true);
+      
+              this.set_attr("text", "start");
+          }
+      
+          set_time_text( d ){
+      
+              this.set_attr(
+      
+                  "min",
+      
+                  ("0"+(Math.max(0, Math.floor(d/60000)))).slice(-2)
+              );
+      
+              this.set_attr(
+      
+                  "sec",
+      
+                  ("0"+(Math.max(0, Math.floor((d/1000)%60)))).slice(-2)
+              );
+          }
+      
+          set_time( d ){
+      
+              this.set_time_text(d);
+      
+              let c= 1-(d/this.get_attr("chase_val"));
+      
+              c = Math.min(c, 0.99);
+      
+              this.set_attr("t", Math.max(0, c));
+          }
+      
+          oTI( a, b, c, trs ){
+      
+              let off= Date.now();
+      
+              trs(
+      
+                  { 
+      
+                      obj:this.elu[4][0],
+      
+                      opacity:[{ tic:0, val:0 },{ tic:300, val:0 },{ 
+      
+                          tic:600,
+      
+                          val:1,
+      
+                          eas:this.context.api.MccdVAicX.default.easing.ease_out
+                       }]
+                   }
+              );
+      
+              setInterval(
+      
+                  (  )=>{
+      
+                      let CHANGE= false;
+      
+                      if ( !this.get_attr("PAUSED")&&this.get_attr("dur")>0 ) {
+      
+                          let now= Date.now();
+      
+                          const diff= now-off;
+      
+                          this.set_attr("dur", this.get_attr("dur") - diff);
+      
+                          off = now;
+      
+                          if ( this.get_attr("dur")<=0 ) this.set_attr("text", "restart");
+      
+                          CHANGE = true;
+                      }
+      
+                      if ( this.get_attr("dur_chase")!=this.get_attr("dur") ) {
+      
+                          if ( Math.abs(this.get_attr("dur_chase")-this.get_attr("dur"))<500 ) {this.set_attr("dur_chase", this.get_attr("dur"));}else this.set_attr(
+      
+                              "dur_chase",
+      
+                              this.get_attr("dur_chase") + (this.get_attr("dur")-this.get_attr("dur_chase"))*(this.get_attr("PAUSED")?0.05:0.08)
+                          );
+      
+                          CHANGE = true;
+                      }
+      
+                      if ( this.get_attr("chase_val")!=this.get_attr("init_val") ) {
+      
+                          if ( Math.abs(
+      
+                              this.get_attr("chase_val")-this.get_attr("init_val")
+                          )<50 ) {
+      
+                              this.set_attr("chase_val", this.get_attr("init_val"));
+                          }else this.set_attr(
+      
+                              "chase_val",
+      
+                              this.get_attr("chase_val") + (this.get_attr("init_val")-this.get_attr("chase_val"))*(this.get_attr("PAUSED")?0.08:0.2)
+                          );
+      
+                          CHANGE = true;
+                      }
+      
+                      if ( CHANGE ) {this.set_time(this.get_attr("dur_chase"));}
+      
+                      off = Date.now();
+                  },
+      
+                  20
+              );
+          }
+      
+          set_state(){
+      
+              if ( this.get_attr("PAUSED") ) {
+      
+                  this.set_attr("PAUSED", false);
+      
+                  this.set_attr("text", "pause");
+              }else if ( this.get_attr("dur")<=0 ) {
+      
+                  this.set_attr("dur", this.get_attr("init_val"));
+      
+                  this.set_attr("text", "pause");
+              }else {
+      
+                  this.set_attr("PAUSED", true);
+      
+                  this.set_attr("text", "start");
+              }
+          }
+      });
+      w.rt.rC(class WippgG8kMmmE5wmi extends w.rt.C{
+      
+          });
+      w.rt.rC(class WwhP3z8i94jzkcKy extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(0, "click", ( ...a )=>this.click(...a));
+      
+              this.ch_map.set(this.ch[0], ["active_time","event"]);
+      
+              this.ch_map.set(this.ch[1], ["active_time","event"]);
+      
+              this.ch_map.set(this.ch[2], ["active_time","event"]);
+      
+              this.ch[0].update({ "label":"pomodoro" }, 2);
+      
+              this.ch[0].update({ "val":1 }, 2);
+      
+              this.ch[1].update({ "label":"short break" }, 2);
+      
+              this.ch[1].update({ "val":2 }, 2);
+      
+              this.ch[2].update({ "label":"long break" }, 2);
+      
+              this.ch[2].update({ "val":3 }, 2);
+      
+              this.set_attr("current_target", null);
+      
+              w.rt.register_store("", "active_time", this);
+      
+              w.rt.register_store("", "colorID", this);
+      
+              w.rt.register_store("", "fontID", this);
+      
+              w.rt.register_store("session", "width", this);
+      
+              w.rt.register_store("session", "height", this);
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2,c.u3,c.u4,c.u5,c.u6___,this.b7];
+      
+              c.attr = new Map(
+      
+                  [["fontID",{ val:undefined, meta:1614807040, module:"" }],["height",{ val:undefined, meta:1614807041, module:"session" }],["width",{ val:undefined, meta:1614807042, module:"session" }],["colorID",{ val:undefined, meta:1614807043, module:"" }],["active_time",{ val:undefined, meta:1648361476, module:"" }],["current_target",{ val:undefined, meta:541065221, module:"" }],["setBacker",{ val:undefined, meta:541065222, module:"" }]]
+              );
+          }
+      
+          denit(  ){
+      
+              w.rt.unregister_store("", "active_time", this);
+      
+              w.rt.unregister_store("", "colorID", this);
+      
+              w.rt.unregister_store("", "fontID", this);
+      
+              w.rt.unregister_store("session", "width", this);
+      
+              w.rt.unregister_store("session", "height", this);
+          }
+      
+          b7( f, c ){
+      
+              this._3_(
+      
+                  c,
+      
+                  this.get_attr("width"),
+      
+                  this.get_attr("height"),
+      
+                  this.get_attr("fontID")
+              );
+          }
+      
+          u0( f, c ){this.call(7, c);}
+      
+          u1( f, c ){this.call(7, c);}
+      
+          u2( f, c ){this.call(7, c);}
+      
+          u3( f, c ){this.sa(1, "col", this.get_attr("colorID")+1);}
+      
+          u4( f, c ){
+      
+              this.set_class(2, this.get_attr("active_time")==1, "active");
+      
+              this.ch[0].update({ "event":this.get_attr("active_time") }, 2);
+      
+              this.set_class(3, this.get_attr("active_time")==2, "active");
+      
+              this.ch[1].update({ "event":this.get_attr("active_time") }, 2);
+      
+              this.set_class(4, this.get_attr("active_time")==3, "active");
+      
+              this.ch[2].update({ "event":this.get_attr("active_time") }, 2);
+          }
+      
+          oTI(){
+      
+              this.setBacker(
+      
+                  [this.elu[2][0],this.elu[3][0],this.elu[4][0]][this.get_attr("active_time")-1]
+              );
+          }
+      
+          _3_( c, width, height, fontID ){
+      
+              console.log("AA", width);
+      
+              this.setBacker(
+      
+                  [this.elu[2][0],this.elu[3][0],this.elu[4][0]][this.get_attr("active_time")-1]
+              );
+          }
+      
+          setBacker( ele ){
+      
+              const bkr= this.elu[1][0];
+      
+              bkr.style.left = ele.offsetLeft-10+"px";
+      
+              bkr.style.right = ele.parentElement.offsetWidth-(ele.offsetWidth+ele.offsetLeft+10)+"px";
+          }
+      
+          click( e ){
+      
+              if ( e.target.classList.contains("entry") ) {
+      
+                  this.set_attr("current_target", e.target);
+      
+                  this.setBacker(this.get_attr("current_target"));
+              }
+          }
+      });
+      w.rt.rC(class Wi68AKBiruSl8kzh extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(
+      
+                  0,
+      
+                  "click",
+      
+                  _=>this.set_attr("event", this.get_attr("val"))
+              );
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2];
+      
+              c.attr = new Map(
+      
+                  [["event",{ val:undefined, meta:549453824, module:"" }],["val",{ val:undefined, meta:549453825, module:"" }],["label",{ val:undefined, meta:549453826, module:"" }]]
+              );
+          }
+      
+          u2( f, c ){this.ue(1, this.get_attr("label"));}
+      });
+    
+    </script>
+  </body>
+</html>

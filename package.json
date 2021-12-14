@@ -1,0 +1,13 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@candlelib/glow": "^0.5.10",
+    "@candlelib/spark": "^0.3.10",
+    "@candlelib/wick": "^0.18.9"
+  }
+}

@@ -1,0 +1,69 @@
+export default <div></div>;
+
+<style>
+
+    root {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width: 40px;
+        height: 40px;
+        display:inline-block;
+        margin: 0 10px;
+        border-radius:20px;
+        text-align:center;
+        line-height: 40px;
+        position:relative;
+        cursor:pointer;
+        z-index:1;
+        color:#1E213F;
+        user-select:none;
+        transition:color 200ms, background 200ms;
+        box-shadow: 0 0 2px #5552;
+    }
+
+    root.font.selected {
+        cursor:unset;
+        background: #161932;
+        color:white;
+    }
+    root.font {
+
+        font-size:1.3em;
+        background:#EFF1FA;
+    }
+
+    root.color.selected {
+        cursor:unset;
+        color:white;
+    }
+
+    root:hover::before {
+        content:"";
+        display:block;
+        position:absolute;
+        top:-7px;
+        left:-7px;
+        width:50px;
+        height:50px;
+        border-radius:26px;
+        border: 2px solid #EFF1FA;
+        z-index:-9;
+    }
+
+    root.color.selected::after {
+        background: url("/img/icon-check.svg") no-repeat center;
+        content:"";
+        display:block;
+        position:absolute;
+        top:-7px;
+        left:-7px;
+        width:50px;
+        height:50px;
+        border-radius:26px;
+        border: 2px solid transparent;
+        z-index:-9;
+    }
+
+</style>

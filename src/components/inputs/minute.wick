@@ -1,0 +1,120 @@
+import {val, label} from "@props";
+
+let pointer_id= " ", delta=0, display_val=val;
+
+val = 0;
+
+function $(val){
+    display_val = val;
+}
+
+function dragstart(e){
+    delta=e.offsetY;
+    pointer_id = e.pointerId;
+    e.target.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    e.stopImmediatePropagation();
+}
+
+function dragmove(e){
+    if(pointer_id !== " "){
+        display_val = Math.max(1,Math.min(90,val - Math.round((e.offsetY - delta) * 0.08)));
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    }
+}
+
+function dragend(e){
+    e.target.releasePointerCapture(pointer_id);
+    pointer_id = " ";
+    val = display_val;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+}
+
+export default <div>
+    <div class=label>{label}</div>
+    <div class=value onpointerdown=dragstart onpointermove=dragmove onpointerup=dragend>
+        {display_val}
+        <div class=inc  onclick={ val = Math.max(Math.min(display_val+1,120),1) }></div>
+        <div class=dec  onclick={ val = Math.max(Math.min(display_val-1,120),1) }></div>
+    </div>
+
+</div>;
+
+<style>
+    root {        
+        position:relative;
+        display:inline-block;
+        margin:10px 0;
+        min-width:30%;
+        font-weight:800;
+        user-select:none;
+    }
+
+    .label {
+        color:#909090;
+        margin-bottom: 10px;
+        text-transform:lowercase;
+    }
+
+    .value  {
+
+        touch-action:none;
+        color:black;
+        position:relative;
+        left:0;
+        font-size:1.2em;
+        height:50px;
+        width:100%;
+        cursor: row-resize;
+        border-radius:10px;
+        background-color:#EFF1FA;
+        padding:10px 20px;
+    }
+    .inc, .dec {
+        background: url("/img/icon-arrow-up.svg") no-repeat 50% 50%;
+        height:50%;
+        width:30px;
+        position:absolute;
+        right:0;
+        top:0;
+        border-radius:1px;
+        cursor:pointer;
+        opacity:0.25
+    }
+
+    .dec {
+        background: url("/img/icon-arrow-down.svg") no-repeat 50% 50%;
+        top:50%;
+    }
+
+    .inc:hover, .dec:hover {
+        opacity:0.35
+    }
+
+    .inc:active, .dec:active {
+        opacity:1
+    }
+
+    @media screen and ( max-width: 700px ){
+        root {
+            width:100%;
+            display:flex;
+            margin:4px 0;
+        }
+
+        .value {
+            width:50%;
+            height:40px;
+        }
+
+        .label {
+            line-height:40px;
+            display:block;
+            position:relative;
+            width:50%;
+        }
+    }
+</style>

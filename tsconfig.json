@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "target": "ESNEXT",
+        "rootDir": "./source/typescript/",
+        "outDir": "./build/",
+    }
+}

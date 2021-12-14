@@ -1,0 +1,259 @@
+import {fontID, promo_dur, short_dur, long_dur, active_time, colorID} from "@store"
+import glow from "@candlelib/glow";
+
+let min = "00";
+let sec =  "00";
+let text = "start";
+let t = 1;
+const r  = 47.5;
+const path_size = 2*r*Math.PI;
+let dur = 20;
+let dur_chase = 20;
+let init_val= 0;
+let chase_val = 0;
+let PAUSED = true;
+active_time = 1;
+
+function $(active_time, short_dur, long_dur, promo_dur){
+    if(active_time == 1){
+        init_val = (promo_dur * 60000);
+    }else if (active_time == 2){
+        init_val = (short_dur * 60000);
+    }else {
+        init_val = (long_dur * 60000);
+    }
+    dur = init_val;
+    PAUSED = true;
+    text = "start";
+}
+
+function set_time_text(d){
+    min = ( "0" + (Math.max(0,Math.floor(d / 60000)))).slice(-2);
+    sec = ("0" +( Math.max(0,Math.floor((d / 1000) % 60)))).slice(-2);
+}
+
+function set_time(d){
+    set_time_text(d)   
+    let c = 1 - (d/chase_val);
+    c = Math .min(c, 0.99);
+    t = Math.max(0, c);
+}
+
+function ontrsin(a,b,c,trs){
+
+    let off = Date.now();
+
+    trs(
+        {
+            obj:"@.clock-time-text",
+            opacity:[{tic:0,val:0},{tic:300,val:0},{tic:600,val:1, eas:glow.easing.ease_out }]
+        }
+        
+    )
+
+    setInterval(()=>{
+
+        let CHANGE = false;
+
+        if(!PAUSED && dur > 0){
+            let now = Date.now();
+
+            const diff = now-off;
+
+            dur -= diff;
+
+            off = now;
+
+            if(dur <= 0)
+                text = "restart";
+
+            CHANGE= true;
+        } 
+
+        if(dur_chase != dur) {
+            if(Math.abs(dur_chase - dur) < 500){ dur_chase = dur; }
+            else  dur_chase += (dur - dur_chase) * (PAUSED ? 0.05 : 0.08);
+            CHANGE= true;
+        }
+        
+        if( chase_val != init_val){
+            if(Math.abs(chase_val - init_val) < 50){ chase_val = init_val; }
+            else chase_val += (init_val- chase_val) * (PAUSED ? 0.08 : 0.2);
+            CHANGE= true;
+        }
+
+        if(CHANGE){
+            set_time(dur_chase);
+        }
+        
+        off = Date.now();
+
+    }, 20)
+}
+
+function set_state(){
+    if(PAUSED){
+        PAUSED = false;
+        text = "pause"
+    }else if(dur <= 0){
+        dur = init_val;
+        text = "pause";
+    }else {
+        PAUSED = true;
+        text = "start";
+    }
+}
+
+export default <div>
+    <div class=clock-bezel>
+        <div class=clock-face onclick=set_state>
+            <div class=clock-text>
+                <div class=clock-time-text>
+                <span class=min>{min}</span><span class=center>:</span><span class=sec>{sec}</span>
+                </div>
+                <div class="clock-time-subtext font-color" col={colorID +1}>
+                {text}
+                </div>
+                <svg class=outline viewBox="0 0 100 100">
+                    <circle 
+                        col={colorID +1}
+                        class="color"
+                        style="fill: none; stroke-width: 3.5;"
+                        stroke-linecap="round"
+                        stroke-dasharray={path_size}
+                        stroke-dashoffset={path_size * t}
+                        cx="50" 
+                        cy="50" 
+                        r={r}
+                    />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>;
+
+
+
+<style>
+    body {
+        background-color:#1E213F;
+    }
+
+    root,
+     .clock-bezel {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    root {
+        position:relative;
+        width:500px;
+        height:500px;
+        font-size:12px;
+        background: radial-gradient(circle at 43% 43%, #424BA1A0 00%,#00000000 50%,#00000000 70%), radial-gradient(circle at 55% 55%, #000000a0 00%,#00000000 53%,#00000000 70%);
+    }
+
+    .clock-bezel {
+        position:relative;
+        top:0;
+        width:82%;
+        height:82%;
+        border-radius:100%;
+        background:radial-gradient(circle at 15% 15%,#161932 50%, #424BA120 80%);
+        background-color:#1E213F;
+    }
+
+    .clock-face {
+        position:relative;
+        top:0;
+        width:90%;
+        height:90%;
+        border-radius:100%;
+        background-color:#161932;
+        cursor:pointer;
+    }
+
+    .radiate-init .clock-face{
+        opacity:0;
+    }
+
+    .clock-text {
+        width:100%;
+        height:100%;
+        text-align:center;
+        color:#D7E0FF;
+        font-weight:bold;
+        position:relative;
+        top:0;
+    }
+    
+    .clock-time-text {
+        display:flex;
+        justify-content:center;
+        position:relative;
+        line-height:50px;
+        top: 40%;
+        font-size:7.9em;
+        letter-spacing:-0.02em;
+        opacity:0;
+    }
+
+    .clock-time-subtext {
+        text-transform:uppercase;
+        position:absolute;
+        font-size:1.33em;
+        width:100%;
+        bottom:18%;
+        letter-spacing:0.9em;
+    }
+
+    .clock-face:hover .font-color[col="1"] { color: #F87070; }
+    .clock-face:hover .font-color[col="2"] { color: #70F3F8; }
+    .clock-face:hover .font-color[col="3"] { color: #D881F8; }
+    .outline {
+        position:absolute;
+        top:0;
+        left:0;
+        padding:10px;
+        transform: rotate(90deg)
+    }
+
+    .min, .sec, .center {
+        text-overflow:"";
+        display:block;
+        width:46%;
+    }
+
+    .min {
+        text-align:right;
+    }
+
+    .sec {
+        text-align:left;
+    }
+
+    .center{
+            text-align: center;
+    width: 8%;
+    font-kerning: none;
+    justify-content: center;
+    display: flex;
+    }
+
+     @media screen and ( max-width:700px){
+        root {
+            height:450px;
+            width:450px;
+            font-size: 0.9em;
+        }
+    }
+
+    @media screen and (max-height: 670px){
+         root {
+            height:70vh;
+            width:70vh;
+            font-size: 1.5vh;
+        }
+    }
+</style>;

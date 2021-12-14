@@ -1,0 +1,106 @@
+import router from "@radiate";
+import timer from "./components/timer.wick";
+import slider from "./components/timer-slider.wick";
+import {fontID, colorID, promo_dur, short_dur, long_dur} from "@store:persist";
+
+fontID = 1;
+colorID = 1;
+promo_dur = 5;
+short_dur = 15;
+long_dur = 20;
+
+export default <app id=app 
+    class={fontID == 0; "fontA"}
+    class={fontID == 1; "fontB"}
+    class={fontID == 2; "fontC"}
+    >
+
+    <main>
+        <div class=logo>
+            <img src="./img/logo.svg">
+        </div>
+        <slider class=slider />
+        <timer class=timer/>
+        <button onclick={router.setLocation("/menu")} class=settings>
+            <img src="./img/icon-settings.svg"  />
+        </button>
+    </main>
+</app>;
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500;700&family=Roboto+Slab:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+    root {
+        -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+        font-size:12px;
+        user-select:none;
+        position:absolute;
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+        font-family:"Kumbh Sans", arial, sans-serif;
+        top:0;
+        bottom:0;
+    }
+
+    main {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        position:relative;
+        text-align:center;
+    }
+
+    .color, .font-color {transition: color 300ms, background-color: 300ms;}
+    .color[col="1"] { background-color: #F87070; stroke:#F87070 }
+    .color[col="2"] { background-color: #70F3F8; stroke:#70F3F8 }
+    .color[col="3"] { background-color: #D881F8; stroke:#D881F8 }
+    root.fontA,.fontA { font-family: "Kumbh Sans"; }
+    root.fontB,.fontB { font-family: "Roboto Slab"; }
+    root.fontC,.fontC { font-family: "Space Mono"; }
+
+    button {
+        background:none;
+        border:none;
+        width:28px;
+        height:28px;
+        cursor:pointer;
+        opacity:0.5;
+    }
+
+    button:hover{
+        opacity:1;
+    }
+
+    .timer{
+        z-index:0
+    }
+
+
+    .logo {
+        z-index:1
+     }
+
+    .slider {
+        z-index:1;
+        margin-top:60px;
+    }
+
+    @media screen and (max-height: 670px){
+        .slider {
+            margin-top:10px;
+        }
+    }
+
+    @media screen and (max-width: 600px){
+        main {
+            width:100%;
+        }
+    }
+</style>
+

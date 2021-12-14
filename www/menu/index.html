@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="@candlelib/wick-0.16.1"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    <style id="wick-boiler-plate">
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+        position:absolute; 
+        top:0;
+        left:0; 
+        width:100%;
+        padding:0;
+        margin:0; border:none;
+    }
+    
+    li { list-style:none }
+    
+    a { text-decoration:none }
+    
+    </style>
+
+    <style id="wick-app-style">
+    
+                @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500;700&family=Roboto+Slab:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap") ;
+                
+                .Wi8qjN5iuXQGDkyb .close{
+                    top:25px;
+                    right:20px;
+                    position:absolute
+                }
+                
+                .radiate-init .Wi8qjN5iuXQGDkyb{
+                    opacity:0
+                }
+                
+                .Wi8qjN5iuXQGDkyb{
+                    -webkit-tap-highlight-color:rgba(255, 255, 255, 0);
+                    position:absolute;
+                    font-size:12px;
+                    width:100%;
+                    height:100vh;
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    overflow:hidden;
+                    padding:60px;
+                    font-family:"Kumbh Sans" , arial , sans-serif;
+                    background:rgba(0,0,0,0.5)
+                }
+                
+                .Wi8qjN5iuXQGDkyb .color,
+                .Wi8qjN5iuXQGDkyb .font-color{
+                    transition:color 100ms , background-color 100ms
+                }
+                
+                .Wi8qjN5iuXQGDkyb .color[col="1"]{
+                    background-color:#f87070
+                }
+                
+                .Wi8qjN5iuXQGDkyb .color[col="2"]{
+                    background-color:#70f3f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .color[col="3"]{
+                    background-color:#d881f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .font-color[col="1"]:hover{
+                    color:#f87070
+                }
+                
+                .Wi8qjN5iuXQGDkyb .font-color[col="2"]:hover{
+                    color:#70f3f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .font-color[col="3"]:hover{
+                    color:#d881f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .fontA{
+                    font-family:"Kumbh Sans"
+                }
+                
+                .Wi8qjN5iuXQGDkyb .fontB{
+                    font-family:"Roboto Slab"
+                }
+                
+                .Wi8qjN5iuXQGDkyb .fontC{
+                    font-family:"Space Mono"
+                }
+                
+                .Wi8qjN5iuXQGDkyb .colorA{
+                    background-color:#f87070
+                }
+                
+                .Wi8qjN5iuXQGDkyb .colorB{
+                    background-color:#70f3f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .colorC{
+                    background-color:#d881f8
+                }
+                
+                .Wi8qjN5iuXQGDkyb .logo{
+                    margin-top:60px
+                }
+                
+                .Wi8qjN5iuXQGDkyb .slider{
+                    margin-top:100px
+                }
+                
+                .Wi8qjN5iuXQGDkyb .button-bar{
+                    width:100%;
+                    position:absolute;
+                    bottom:0;
+                    left:0;
+                    text-align:center
+                }
+                
+                .Wi8qjN5iuXQGDkyb button{
+                    font-weight:bold;
+                    position:relative;
+                    left:0;
+                    font-size:16px;
+                    top:24px;
+                    height:53px;
+                    border-radius:25px;
+                    padding:10px 50px;
+                    border:none;
+                    color:#ffffff;
+                    cursor:pointer
+                }
+                
+                .Wi8qjN5iuXQGDkyb button:hover{
+                    background:#f98d8d
+                }
+                
+                @media screen and (max-width:700px){
+                    .Wi8qjN5iuXQGDkyb{
+                        padding:20px
+                    }
+                    .Wi8qjN5iuXQGDkyb .close{
+                        top:10px;
+                        right:10px
+                    }
+                }
+                .WiBACn4ihpBK9kdI{
+                    user-select:none;
+                    position:relative;
+                    width:540px;
+                    padding:30px 40px 30px;
+                    color:#000000;
+                    background-color:#ffffff;
+                    border-radius:30px
+                }
+                
+                .WiBACn4ihpBK9kdI .divider{
+                    width:100%;
+                    height:1px;
+                    background-color:#e3e1e1;
+                    position:relative
+                }
+                
+                .WiBACn4ihpBK9kdI .divider.full{
+                    width:calc(100% + 80px);
+                    height:1px;
+                    left:-40px
+                }
+                
+                .WiBACn4ihpBK9kdI h1{
+                    font-size:2.34em;
+                    margin:0 0 30px 0;
+                    padding:0
+                }
+                
+                .WiBACn4ihpBK9kdI .row{
+                    width:100%;
+                    margin:20px 0
+                }
+                
+                .WiBACn4ihpBK9kdI .row.top{
+                    margin-top:10px
+                }
+                
+                .WiBACn4ihpBK9kdI .row > h2,
+                .WiBACn4ihpBK9kdI .row > h3,
+                .WiBACn4ihpBK9kdI .row > h4{
+                    display:inline-block;
+                    text-transform:uppercase;
+                    letter-spacing:5px
+                }
+                
+                .WiBACn4ihpBK9kdI .flex-row{
+                    width:100%;
+                    display:flex;
+                    justify-content:space-between
+                }
+                
+                .WiBACn4ihpBK9kdI .inline-row-right{
+                    display:inline;
+                    position:relative;
+                    float:right
+                }
+                
+                .WiBACn4ihpBK9kdI .right{
+                    float:right
+                }
+                
+                @media screen and (max-width:700px){
+                    .WiBACn4ihpBK9kdI{
+                        width:100%;
+                        padding:20px 26px;
+                        border-radius:15px
+                    }
+                    .WiBACn4ihpBK9kdI .flex-row{
+                        flex-direction:column
+                    }
+                    .WiBACn4ihpBK9kdI .row{
+                        margin:10px 0 15px
+                    }
+                    .WiBACn4ihpBK9kdI h1{
+                        font-size:1.6em
+                    }
+                    .WiBACn4ihpBK9kdI .row > h2,
+                    .WiBACn4ihpBK9kdI .row > h3,
+                    .WiBACn4ihpBK9kdI > h4{
+                        text-align:center;
+                        font-size:0.9em;
+                        margin-bottom:15px;
+                        width:100%
+                    }
+                    .WiBACn4ihpBK9kdI .divider.full{
+                        width:calc(100% + 52px);
+                        left:-26px
+                    }
+                    .WiBACn4ihpBK9kdI .inline-row-right{
+                        display:block;
+                        position:relative;
+                        float:unset;
+                        text-align:center
+                    }
+                }
+                .Wwg4AGckfTnE8cIH{
+                    display:inline-block;
+                    flex-direction:column;
+                    justify-content:center;
+                    align-items:center;
+                    width:40px;
+                    height:40px;
+                    margin:0 10px;
+                    border-radius:20px;
+                    text-align:center;
+                    line-height:40px;
+                    position:relative;
+                    cursor:pointer;
+                    z-index:1;
+                    color:#1e213f;
+                    user-select:none;
+                    transition:color 200ms , background 200ms;
+                    box-shadow:0 0 2px rgba(85,85,85,0.33203125)
+                }
+                
+                .Wwg4AGckfTnE8cIH.font.selected{
+                    cursor:unset;
+                    background:#161932;
+                    color:#ffffff
+                }
+                
+                .Wwg4AGckfTnE8cIH.font{
+                    font-size:1.3em;
+                    background:#eff1fa
+                }
+                
+                .Wwg4AGckfTnE8cIH.color.selected{
+                    cursor:unset;
+                    color:#ffffff
+                }
+                
+                .Wwg4AGckfTnE8cIH:hover::before{
+                    content:"";
+                    display:block;
+                    position:absolute;
+                    top:-7px;
+                    left:-7px;
+                    width:50px;
+                    height:50px;
+                    border-radius:26px;
+                    border:2px solid #eff1fa;
+                    z-index:-9
+                }
+                
+                .Wwg4AGckfTnE8cIH.color.selected::after{
+                    background:url("/img/icon-check.svg") no-repeat center;
+                    content:"";
+                    display:block;
+                    position:absolute;
+                    top:-7px;
+                    left:-7px;
+                    width:50px;
+                    height:50px;
+                    border-radius:26px;
+                    border:2px solid rgba(0,0,0,0);
+                    z-index:-9
+                }
+                .WkwJ9ikwrNGc5weP{
+                    position:relative;
+                    display:inline-block;
+                    margin:10px 0;
+                    min-width:30%;
+                    font-weight:800;
+                    user-select:none
+                }
+                
+                .WkwJ9ikwrNGc5weP .label{
+                    color:#909090;
+                    margin-bottom:10px;
+                    text-transform:lowercase
+                }
+                
+                .WkwJ9ikwrNGc5weP .value{
+                    touch-action:none;
+                    color:#000000;
+                    position:relative;
+                    left:0;
+                    font-size:1.2em;
+                    height:50px;
+                    width:100%;
+                    cursor:row-resize;
+                    border-radius:10px;
+                    background-color:#eff1fa;
+                    padding:10px 20px
+                }
+                
+                .WkwJ9ikwrNGc5weP .inc,
+                .WkwJ9ikwrNGc5weP .dec{
+                    background:url("/img/icon-arrow-up.svg") no-repeat 50% 50%;
+                    height:50%;
+                    width:30px;
+                    position:absolute;
+                    right:0;
+                    top:0;
+                    border-radius:1px;
+                    cursor:pointer;
+                    opacity:0.25
+                }
+                
+                .WkwJ9ikwrNGc5weP .dec{
+                    background:url("/img/icon-arrow-down.svg") no-repeat 50% 50%;
+                    top:50%
+                }
+                
+                .WkwJ9ikwrNGc5weP .inc:hover,
+                .WkwJ9ikwrNGc5weP .dec:hover{
+                    opacity:0.35
+                }
+                
+                .WkwJ9ikwrNGc5weP .inc:active,
+                .WkwJ9ikwrNGc5weP .dec:active{
+                    opacity:1
+                }
+                
+                @media screen and (max-width:700px){
+                    .WkwJ9ikwrNGc5weP{
+                        width:100%;
+                        display:flex;
+                        margin:4px 0
+                    }
+                    .WkwJ9ikwrNGc5weP .value{
+                        width:50%;
+                        height:40px
+                    }
+                    .WkwJ9ikwrNGc5weP .label{
+                        line-height:40px;
+                        display:block;
+                        position:relative;
+                        width:50%
+                    }
+                }
+                .WiJucz9kzyOR6kT3{
+                    background:url("/img/icon-close.svg") no-repeat center;
+                    width:50px;
+                    height:50px;
+                    opacity:0.5;
+                    cursor:pointer
+                }
+                
+                .WiJucz9kzyOR6kT3:hover{
+                    opacity:0.7
+                }
+                
+                .WiJucz9kzyOR6kT3:active{
+                    opacity:1
+                }
+    </style>
+
+    <style id="radiate">
+        .radiate-page {
+            position:absolute;
+            top:0;
+            left:0;
+        }
+
+        .radiate-hide {
+            opacity:0;
+        }
+
+        radiate-modals {
+            position:fixed;
+            width:100%;
+            top:0;
+            left:0;
+            z-index:100000;
+        }
+
+        radiate-modals iframe{
+            border: none;
+            width:100vh;
+            height:100vh;
+        }
+    </style>
+  </head>
+  <body>
+    <script> document.body.classList.toggle("radiate-init"); </script>
+
+    <app id="app" class="modal modal Wi8qjN5iuXQGDkyb wk-c-0">
+      <div class="menu menu WiBACn4ihpBK9kdI wk-c-1 wk-claim-0">
+        <h1 class="wk-claim-0">Settings
+        </h1>
+        <div class="WiJucz9kzyOR6kT3 close wk-c-2 wk-claim-0">
+        </div>
+        <div class="divider full wk-claim-0">
+        </div>
+        <div class="row top wk-claim-0">
+          <h3 class="wk-claim-0">TIME (MINUTES)
+          </h3>
+          <div class="flex-row wk-claim-0">
+            <div class="WkwJ9ikwrNGc5weP wk-c-2 wk-claim-0">
+              <div class="label wk-claim-2"><w-b class="wk-claim-2">promodor</w-b>
+              </div>
+              <div class="value wk-claim-2"><w-b class="wk-claim-2"></w-b>
+                <div class="inc wk-claim-2">
+                </div>
+                <div class="dec wk-claim-2">
+                </div>
+              </div>
+            </div>
+            <div class="WkwJ9ikwrNGc5weP wk-c-2 wk-claim-0">
+              <div class="label wk-claim-2"><w-b class="wk-claim-2">short break</w-b>
+              </div>
+              <div class="value wk-claim-2"><w-b class="wk-claim-2"></w-b>
+                <div class="inc wk-claim-2">
+                </div>
+                <div class="dec wk-claim-2">
+                </div>
+              </div>
+            </div>
+            <div class="WkwJ9ikwrNGc5weP wk-c-2 wk-claim-0">
+              <div class="label wk-claim-2"><w-b class="wk-claim-2">long break</w-b>
+              </div>
+              <div class="value wk-claim-2"><w-b class="wk-claim-2"></w-b>
+                <div class="inc wk-claim-2">
+                </div>
+                <div class="dec wk-claim-2">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider wk-claim-0">
+        </div>
+        <div class="row wk-claim-0">
+          <h3 class="wk-claim-0"> Font 
+          </h3>
+          <div class="inline-row-right wk-claim-0">
+            <div class="Wwg4AGckfTnE8cIH font fontA wk-c-2 wk-claim-0">
+              <div class="wk-claim-0">Aa
+              </div>
+            </div>
+            <div class="Wwg4AGckfTnE8cIH font fontB wk-c-2 wk-claim-0">
+              <div class="wk-claim-0">Aa
+              </div>
+            </div>
+            <div class="Wwg4AGckfTnE8cIH font fontC wk-c-2 wk-claim-0">
+              <div class="wk-claim-0">Aa
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider wk-claim-0">
+        </div>
+        <div class="row wk-claim-0">
+          <h3 class="wk-claim-0"> Color 
+          </h3>
+          <div class="inline-row-right wk-claim-0">
+            <div class="Wwg4AGckfTnE8cIH color colorA wk-c-2 wk-claim-0">
+            </div>
+            <div class="Wwg4AGckfTnE8cIH color colorB wk-c-2 wk-claim-0">
+            </div>
+            <div class="Wwg4AGckfTnE8cIH color colorC wk-c-2 wk-claim-0">
+            </div>
+          </div>
+        </div>
+        <div class="button-bar wk-claim-0">
+          <button class="color wk-claim-0">Apply
+          </button>
+        </div>
+      </div>
+    </app>
+
+    <script type=module id="wick-init-script">
+      
+				import {radiate} from "../src/pack.js";
+				radiate.default();
+    </script>
+    <script type=module id="wick-component-script">
+      
+    const w = wick;
+
+    w.appendPresets({"repo":[["MccdVAicX","../src/pack.js"]]});
+
+    
+      w.rt.rC(class Wi8qjN5iuXQGDkyb extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(3, "click", _=>this.context.api.router.closeModal());
+      
+              this.ch_map.set(this.ch[2], ["ipromo_dur","val"]);
+      
+              this.ch_map.set(this.ch[3], ["ishort_dur","val"]);
+      
+              this.ch_map.set(this.ch[4], ["ilong_dur","val"]);
+      
+              this.al(15, "click", _=>(this.set_attr("ifontID", 0)));
+      
+              this.al(17, "click", _=>(this.set_attr("ifontID", 1)));
+      
+              this.al(19, "click", _=>(this.set_attr("ifontID", 2)));
+      
+              this.al(25, "click", _=>(this.set_attr("icolorID", 0)));
+      
+              this.al(26, "click", _=>(this.set_attr("icolorID", 1)));
+      
+              this.al(27, "click", _=>(this.set_attr("icolorID", 2)));
+      
+              this.al(29, "click", ( ...a )=>this.apply(...a));
+      
+              this.sa(3, "class", "close");
+      
+              this.ch[2].update({ "label":"promodor" }, 2);
+      
+              this.ch[3].update({ "label":"short break" }, 2);
+      
+              this.ch[4].update({ "label":"long break" }, 2);
+      
+              this.sa(15, "class", "font fontA");
+      
+              this.sa(17, "class", "font fontB");
+      
+              this.sa(19, "class", "font fontC");
+      
+              this.sa(25, "class", "color colorA");
+      
+              this.sa(26, "class", "color colorB");
+      
+              this.sa(27, "class", "color colorC");
+      
+              this.set_attr("val", 0);
+      
+              this.set_attr("ifontID", this.get_attr("fontID"));
+      
+              this.set_attr("icolorID", this.get_attr("colorID"));
+      
+              this.set_attr("ipromo_dur", this.get_attr("promo_dur"));
+      
+              this.set_attr("ishort_dur", this.get_attr("short_dur"));
+      
+              this.set_attr("ilong_dur", this.get_attr("long_dur"));
+      
+              w.rt.register_store("", "fontID", this);
+      
+              w.rt.register_store("", "colorID", this);
+      
+              w.rt.register_store("", "promo_dur", this);
+      
+              w.rt.register_store("", "short_dur", this);
+      
+              w.rt.register_store("", "long_dur", this);
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2,c.u3,c.u4,c.u5,c.u6,c.u7,c.u8,c.u9,c.u10,c.u11,c.u12];
+      
+              c.attr = new Map(
+      
+                  [["router",{ val:undefined, meta:541065216, module:"" }],["ipromo_dur",{ val:undefined, meta:574619649, module:"" }],["ishort_dur",{ val:undefined, meta:574619650, module:"" }],["ilong_dur",{ val:undefined, meta:574619651, module:"" }],["ifontID",{ val:undefined, meta:541065220, module:"" }],["icolorID",{ val:undefined, meta:541065221, module:"" }],["val",{ val:undefined, meta:541065222, module:"" }],["fontID",{ val:undefined, meta:1614807047, module:"" }],["colorID",{ val:undefined, meta:1614807048, module:"" }],["promo_dur",{ val:undefined, meta:1614807049, module:"" }],["short_dur",{ val:undefined, meta:1614807050, module:"" }],["long_dur",{ val:undefined, meta:1614807051, module:"" }],["glow",{ val:undefined, meta:4194316, module:"MccdVAicX" }]]
+              );
+          }
+      
+          denit(  ){
+      
+              w.rt.unregister_store("", "fontID", this);
+      
+              w.rt.unregister_store("", "colorID", this);
+      
+              w.rt.unregister_store("", "promo_dur", this);
+      
+              w.rt.unregister_store("", "short_dur", this);
+      
+              w.rt.unregister_store("", "long_dur", this);
+          }
+      
+          u1( f, c ){
+      
+              this.ch[2].update({ "val":this.get_attr("ipromo_dur") }, 2);
+          }
+      
+          u2( f, c ){
+      
+              this.ch[3].update({ "val":this.get_attr("ishort_dur") }, 2);
+          }
+      
+          u3( f, c ){
+      
+              this.ch[4].update({ "val":this.get_attr("ilong_dur") }, 2);
+          }
+      
+          u4( f, c ){
+      
+              this.set_class(15, this.get_attr("ifontID")==0, "selected");
+      
+              this.set_class(17, this.get_attr("ifontID")==1, "selected");
+      
+              this.set_class(19, this.get_attr("ifontID")==2, "selected");
+          }
+      
+          u5( f, c ){
+      
+              this.set_class(25, this.get_attr("icolorID")==0, "selected");
+      
+              this.set_class(26, this.get_attr("icolorID")==1, "selected");
+      
+              this.set_class(27, this.get_attr("icolorID")==2, "selected");
+      
+              this.sa(29, "col", this.get_attr("icolorID")+1);
+          }
+      
+          oTI( a, b, c, trs ){
+      
+              this.set_attr("ifontID", this.get_attr("fontID"));
+      
+              this.set_attr("icolorID", this.get_attr("colorID"));
+      
+              this.set_attr("ipromo_dur", this.get_attr("promo_dur"));
+      
+              this.set_attr("ishort_dur", this.get_attr("short_dur"));
+      
+              this.set_attr("ilong_dur", this.get_attr("long_dur"));
+      
+              console.log(trs);
+      
+              trs(
+      
+                  { 
+      
+                      obj:this.elu[0][0],
+      
+                      opacity:[{ tic:0, val:0 },{ tic:50, val:0 },{ tic:300, val:1 }]
+                   },
+      
+                  { 
+      
+                      obj:this.elu[1][0],
+      
+                      transform:[{ tic:0, val:"translateY(1000)" },{ tic:250, val:"translateY(600)" },{ 
+      
+                          tic:600,
+      
+                          val:"translateY(0)",
+      
+                          eas:this.context.api.MccdVAicX.default.easing.ease_out
+                       }]
+                   }
+              );
+          }
+      
+          oTO( a, b, c, trs ){
+      
+              trs(
+      
+                  { 
+      
+                      obj:this.elu[0][0],
+      
+                      opacity:[{ tic:0, val:1 },{ tic:200, val:1 },{ tic:600, val:0 }]
+                   },
+      
+                  { 
+      
+                      obj:this.elu[1][0],
+      
+                      transform:[{ 
+      
+                          tic:0,
+      
+                          val:"translateY(0)",
+      
+                          eas:this.context.api.MccdVAicX.default.easing.ease_in
+                       },{ 
+      
+                          tic:100,
+      
+                          val:"translateY(0)",
+      
+                          eas:this.context.api.MccdVAicX.default.easing.ease_in
+                       },{ tic:300, val:"translateY(1000)" }]
+                   }
+              );
+          }
+      
+          apply(){
+      
+              wick.rt.set_store("", "fontID", this.get_attr("ifontID"), this);
+      
+              wick.rt.set_store("", "colorID", this.get_attr("icolorID"), this);
+      
+              wick.rt.set_store("", "promo_dur", this.get_attr("ipromo_dur"), this);
+      
+              wick.rt.set_store("", "short_dur", this.get_attr("ishort_dur"), this);
+      
+              wick.rt.set_store("", "long_dur", this.get_attr("ilong_dur"), this);
+      
+              this.context.api.router.closeModal();
+          }
+      });
+      w.rt.rC(class WiBACn4ihpBK9kdI extends w.rt.C{
+      
+          });
+      w.rt.rC(class Wwg4AGckfTnE8cIH extends w.rt.C{
+      
+          });
+      w.rt.rC(class WkwJ9ikwrNGc5weP extends w.rt.C{
+      
+          init( c ){
+      
+              this.al(3, "pointerdown", ( ...a )=>this.dragstart(...a));
+      
+              this.al(3, "pointermove", ( ...a )=>this.dragmove(...a));
+      
+              this.al(3, "pointerup", ( ...a )=>this.dragend(...a));
+      
+              this.al(
+      
+                  5,
+      
+                  "click",
+      
+                  _=>this.set_attr(
+      
+                      "val",
+      
+                      Math.max(Math.min(this.get_attr("display_val")+1, 120), 1)
+                  )
+              );
+      
+              this.al(
+      
+                  6,
+      
+                  "click",
+      
+                  _=>this.set_attr(
+      
+                      "val",
+      
+                      Math.max(Math.min(this.get_attr("display_val")-1, 120), 1)
+                  )
+              );
+      
+              this.set_attr("pointer_id", " ");
+      
+              this.set_attr("delta", 0);
+      
+              this.set_attr("display_val", this.get_attr("val"));
+      
+              this.set_attr("val", 0);
+          }
+      
+          init_interfaces( c ){
+      
+              c.lookup_function_table = [c.u0,c.u1,c.u2,c.u3,c.u4];
+      
+              c.attr = new Map(
+      
+                  [["val",{ val:undefined, meta:549453824, module:"" }],["label",{ val:undefined, meta:549453825, module:"" }],["display_val",{ val:undefined, meta:541065218, module:"" }],["pointer_id",{ val:undefined, meta:541065219, module:"" }],["delta",{ val:undefined, meta:541065220, module:"" }]]
+              );
+          }
+      
+          u0( f, c ){this._2_(c, this.get_attr("val"));}
+      
+          u1( f, c ){this.ue(2, this.get_attr("label"));}
+      
+          u2( f, c ){this.ue(4, this.get_attr("display_val"));}
+      
+          _2_( c, val ){this.set_attr("display_val", val);}
+      
+          dragstart( e ){
+      
+              this.set_attr("delta", e.offsetY);
+      
+              this.set_attr("pointer_id", e.pointerId);
+      
+              e.target.setPointerCapture(e.pointerId);
+      
+              e.preventDefault();
+      
+              e.stopImmediatePropagation();
+          }
+      
+          dragmove( e ){
+      
+              if ( this.get_attr("pointer_id")!==" " ) {
+      
+                  this.set_attr(
+      
+                      "display_val",
+      
+                      Math.max(
+      
+                          1,
+      
+                          Math.min(
+      
+                              90,
+      
+                              this.get_attr("val")-Math.round((e.offsetY-this.get_attr("delta"))*0.08)
+                          )
+                      )
+                  );
+      
+                  e.preventDefault();
+      
+                  e.stopPropagation();
+      
+                  e.stopImmediatePropagation();
+              }
+          }
+      
+          dragend( e ){
+      
+              e.target.releasePointerCapture(this.get_attr("pointer_id"));
+      
+              this.set_attr("pointer_id", " ");
+      
+              this.set_attr("val", this.get_attr("display_val"));
+      
+              e.preventDefault();
+      
+              e.stopImmediatePropagation();
+          }
+      });
+      w.rt.rC(class WiJucz9kzyOR6kT3 extends w.rt.C{
+      
+          });
+    
+    </script>
+  </body>
+</html>

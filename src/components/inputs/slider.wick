@@ -1,0 +1,117 @@
+import entry from "./slider-entry";
+import { active_time, colorID, fontID } from "@store";
+import { width, height } from "@store:session";
+import glow from "@candlelib/glow";
+
+let current_target = null;
+
+function ontrsin(){
+    setBacker("@entry"[active_time-1])
+}
+
+function $aa(width, height, fontID){
+    console.log("AA", width)
+    setBacker("@entry"[active_time-1])
+}
+
+function setBacker(ele){
+    const bkr = "@.backer";
+    
+    bkr.style.left = ele.offsetLeft-10 + "px";
+    bkr.style.right = ele.parentElement.offsetWidth - (ele.offsetWidth + ele.offsetLeft+10) + "px";
+
+}
+
+function click(e){
+    if(e.target.classList.contains("entry")){
+        current_target = e.target;
+        setBacker(current_target);
+    }
+}
+
+export default <div onclick=click>
+    <div class="backer color" col={colorID+1}>pomodoro</div>
+    <entry label="pomodoro" class={active_time == 1; "active"} event={active_time;1} val={1}/>
+    <entry label="short break" class={active_time == 2; "active"} event={active_time;1} val={2}/>
+    <entry label="long break" class={active_time == 3; "active"} event={active_time;1} val={3}/>
+</div>;
+
+<style>
+
+    root {
+        position:relative;
+        height: 64px;
+        background-color:#161932;
+        border-radius:30px;
+        padding:7px;
+        width:fit-content;
+        z-index:0;
+        font-size:12px;
+    }
+
+    .entry {
+        cursor:pointer;
+        display:inline-block;
+        height:50px;
+        line-height:50px;
+        margin:0 5px;
+        padding: 0 20px;
+        text-align:center;
+        font-size:1.2em;
+        font-weight:bold;
+        color:#636984;
+        z-index:1;
+        position:relative;
+        transition:color 300ms;
+    }
+
+    .entry:hover{
+        color:white;
+    }
+
+    .entry.active {
+        color:#1E213F;
+        cursor:unset;
+        opacity:1;
+    }
+
+    .backer {
+        position:absolute;
+        height:50px;
+        z-index:0;
+        border-radius:25px;
+        top:7px;
+        left:7px;
+        right:7px;
+        padding:0 10px;
+        color:transparent;
+        transition: left 400ms, right 200ms;
+    }
+
+    @media screen and (max-width: 750px){
+        root {
+            font-size:2.4vw;
+        }
+    }
+
+    @media screen and (max-height: 670px){
+         root {
+             height:30px;
+             padding:0 0px;
+        }
+        .entry {
+            line-height:30px;
+            height:30px;
+            margin:0;
+        }
+
+        .backer {
+            height:30px;
+            margin:0;
+            padding:0;
+            top:0;
+            padding:0 2px;
+        }
+    }
+
+</style>;
