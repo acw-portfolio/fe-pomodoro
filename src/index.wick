@@ -15,14 +15,16 @@ export default <app id=app
     class={fontID == 2; "fontC"}
     >
 
+    <head> Frontend Mentor | Pomodoro </head>
+
     <main>
         <div class=logo>
-            <img src="./img/logo.svg">
+            <img src="./img/logo.svg" alt=pomodoro>
         </div>
         <slider class=slider />
         <timer class=timer/>
         <button onclick={router.setLocation("/menu")} class=settings>
-            <img src="./img/icon-settings.svg"  />
+            <img src="./img/icon-settings.svg" alt="settings logo" />
         </button>
     </main>
 </app>;
