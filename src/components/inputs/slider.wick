@@ -1,15 +1,29 @@
 import entry from "./slider-entry";
-import { active_time, colorID, fontID } from "@store";
+import {  colorID, fontID } from "@store";
+import {active_time} from "@store:persist";
 import { width, height } from "@store:session";
 import glow from "@candlelib/glow";
 
 let current_target = null;
 
-function ontrsin(){
+let TRANSITIONED_IN = false;
+
+function ontrsin(a,b,c,trs){
     setBacker("@entry"[active_time-1])
+    trs(
+        {obj:"@.backer", opacity:[[0,0], [300,0], [500,1]]}
+    )
 }
 
+function ontrsdone(){
+
+    setBacker("@entry"[active_time-1])
+    TRANSITIONED_IN = true;
+}
+
+
 function $aa(width, height, fontID){
+    if(TRANSITIONED_IN)
     setBacker("@entry"[active_time-1])
 }
 
@@ -84,7 +98,7 @@ export default <div onclick=click>
         right:7px;
         padding:0 10px;
         color:transparent;
-        transition: left 400ms, right 200ms;
+        transition: left 400ms, right 400ms;
     }
 
     @media screen and (max-width: 750px){

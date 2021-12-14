@@ -1,6 +1,6 @@
 import router from "@radiate";
 import glow from "@candlelib/glow";
-import {fontID, colorID, promo_dur, short_dur, long_dur} from "@store"
+import {fontID, colorID, promo_dur, short_dur, long_dur} from "@store:persist"
 
 import menu from "./components/menu";
 import rad from "./components/inputs/radio_button";

@@ -1,8 +1,9 @@
 import router from "@radiate";
 import timer from "./components/timer.wick";
 import slider from "./components/timer-slider.wick";
-import {fontID, colorID, promo_dur, short_dur, long_dur} from "@store:persist";
+import {fontID, colorID, promo_dur, short_dur, long_dur, active_time} from "@store:persist";
 
+active_time = 1;
 fontID = 1;
 colorID = 1;
 promo_dur = 5;
