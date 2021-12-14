@@ -10,7 +10,6 @@ function ontrsin(){
 }
 
 function $aa(width, height, fontID){
-    console.log("AA", width)
     setBacker("@entry"[active_time-1])
 }
 

@@ -21,7 +21,6 @@ function ontrsin(a,b,c,trs){
     ipromo_dur =promo_dur;
     ishort_dur =short_dur;
     ilong_dur =long_dur;
-    console.log(trs)
     trs({
         obj:"@root",
         opacity:[{tic:0,val:0}, {tic:50,val:0}, {tic:300, val:1}]
