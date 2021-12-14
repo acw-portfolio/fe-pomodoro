@@ -15,7 +15,8 @@ export default <app id=app
     class={fontID == 2; "fontC"}
     >
 
-    <head> Frontend Mentor | Pomodoro </head>
+    <head> 
+        <title>Frontend Mentor | Pomodoro</title> </head>
 
     <main>
         <div class=logo>
